@@ -11,12 +11,15 @@ from selenium.common.exceptions import TimeoutException,JavascriptException,WebD
 from selenium.webdriver.firefox.options import Options
 from tqdm import tqdm
 
+
+profile = webdriver.FirefoxProfile()
+profile.set_preference('privacy.trackingprotection.enabled',True)
 options = Options()
 options.headless = True
-driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox(options=options,firefox_profile=profile)
 
 # open list of urls for testing
-with open('alexa-top-1000.txt', 'r') as url_file:
+with open('markMeasureResults.txt', 'r') as url_file:
     test_urls = url_file.readlines()
 
 driver.set_page_load_timeout(15)
@@ -25,13 +28,14 @@ driver.set_page_load_timeout(15)
 uses = 0
 notUses = 0
 inconclusive = 0
-f = open('markMeasureResults.txt','w')
+f = open('markMeasureResultsTP.txt','w')
 for url in tqdm(test_urls):  
     url = url.replace('\n','')        
     try:
         # request url from list
         #print("Fetching " + str(url),end='')
-        url = 'https://' + url 
+        if 'https://' not in url:
+            url = 'https://' + url 
         driver.get(url) 
         # pull window.performance.timing after loading the page and add information about url and number of run
         perf_timings = driver.execute_script("return window.performance.getEntries()")

@@ -42,8 +42,8 @@ def insertDict(sql,d):
 # this is the default path on macOS
 tor_dir = '../tor-browser-patched/Primary/'
 
-vdisplay = Xvfb()
-vdisplay.start()
+#vdisplay = Xvfb()
+#vdisplay.start()
 
 # open list of urls for testing
 with open('markMeasureResults.txt', 'r') as url_file:
@@ -86,4 +86,4 @@ while True:
             #Put in Database
         db.commit()
     #driver.quit()
-vdisplay.stop()
+#vdisplay.stop()

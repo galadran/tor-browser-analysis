@@ -119,7 +119,7 @@ def getTorFirefoxDriver():
 
 from time import sleep 
 while True:
-    d = getTorDriver()
+    d = getFirefoxDriver()#getTorDriver()
     measureSession(d,path)
     d.quit()
     sleep(120)

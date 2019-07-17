@@ -36,6 +36,8 @@ def unpackMeasurement(b):
 
 def getSize(m):
     #measurement object into size
+    (a,b) = m 
+    m = b #Sin!
     if m == 'FAILED':
         return -1 
     total = 0

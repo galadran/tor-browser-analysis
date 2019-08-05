@@ -95,7 +95,7 @@ def getFirefoxDriver():
     driver.db_name = 'Firefox'
     return driver
 
-tor_dir = '../tor-browser-patched/Secondary/'
+tor_dir = '../tor-browser-patched/Primary/'
 def getTorDriver(): 
     driver = TorBrowserDriver(tor_dir)
     driver.db_name = 'TorBrowser'
@@ -119,7 +119,7 @@ def getTorFirefoxDriver():
 
 from time import sleep 
 while True:
-    d = getFirefoxDriver()#getTorDriver()
+    d = getTorDriver()
     measureSession(d,path)
     d.quit()
     sleep(120)
